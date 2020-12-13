@@ -1,23 +1,21 @@
 #Imports
 from flask import	Flask, jsonify
-from data import products
+from data import products, Rutas
 
 #Instancia
 app = Flask(__name__)
 
+
+
 #Rutas
 @app.route('/', methods = ['GET'])
 def index():
-    return jsonify({"Rutas":
-                   {"/":"Bienvenida y Rutas [GET]", 
-                    "/data": "informacion a cerca de los integrantes de la banda [GET]",
-                    "/data/{id}":"Informacion a cerca de un integrante de la banda [GET] [{id}]",
-                     "/create": "crea un integrante de la banda [POST]",
-                      "/modify/{id}": "modifica un integrante de la banda [patch]"}})
+  response = jsonify({"information": Rutas})
+  return response
 
 @app.route('/data', methods = ['GET'])
 def all_data():
-    return jsonify({"data": "Information"})
+    return jsonify({"data": products})
 
 @app.route('/data/{id}', methods = ['GET'])
 def data_by_id():
